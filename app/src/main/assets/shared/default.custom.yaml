@@ -1,0 +1,27 @@
+# 全局設定 — Taiwan bilingual pinyin keyboard
+# Patches Trime's built-in default.yaml. Redeploy (重新部署) after editing.
+
+patch:
+  # Active schemas: Taiwan Traditional pinyin first, pure English second.
+  schema_list:
+    - schema: luna_pinyin_tw
+    - schema: easy_en
+
+  # Candidates per page
+  "menu/page_size": 6
+
+  # Shift commits what you typed and switches to English (like Google Pinyin);
+  # Caps Lock types ABC directly.
+  "ascii_composer/good_old_caps_lock": true
+  "ascii_composer/switch_key":
+    Shift_L: commit_code
+    Shift_R: commit_code
+    Control_L: noop
+    Control_R: noop
+    Caps_Lock: commit_code
+    Eisu_toggle: clear
+
+  # Ctrl+` or F4 opens the schema/options switcher
+  "switcher/hotkeys":
+    - "Control+grave"
+    - F4

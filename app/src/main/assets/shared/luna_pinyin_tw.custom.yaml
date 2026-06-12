@@ -1,0 +1,39 @@
+# 朙月拼音·臺灣正體 customization
+# Adds: mixed Chinese-English candidates, Taiwan vocabulary boost, fuzzy pinyin.
+# This file is picked up automatically by luna_pinyin_tw. Redeploy after editing.
+
+patch:
+  # Compile the English dictionary alongside this schema
+  "schema/dependencies": [ easy_en ]
+
+  # Extra translators: English words + Taiwan phrase booster
+  "engine/translators/+":
+    - table_translator@english
+    - table_translator@custom_phrase
+
+  # English words appear as candidates while typing pinyin (bilingual mode)
+  english:
+    dictionary: easy_en
+    enable_user_dict: true
+    enable_completion: true
+    enable_sentence: false
+    initial_quality: 0.6
+    comment_format:
+      - "xform/^.+$//"
+
+  # Taiwan-specific vocabulary boost (see custom_phrase_tw.txt)
+  custom_phrase:
+    dictionary: ""
+    user_dict: custom_phrase_tw
+    db_class: stabledb
+    enable_completion: false
+    enable_sentence: false
+    initial_quality: 1
+
+  # Fuzzy pinyin — common Taiwanese Mandarin mergers.
+  # Delete any line you don't want, then redeploy.
+  "speller/algebra/+":
+    - derive/^([zcs])h/$1/        # type z/c/s → also match zh/ch/sh
+    - derive/^([zcs])([aeiou])/$1h$2/  # type zh/ch/sh → also match z/c/s
+    - derive/([ei])n$/$1ng/       # type ing/eng → also match in/en
+    - derive/([ei])ng$/$1n/       # type in/en → also match ing/eng

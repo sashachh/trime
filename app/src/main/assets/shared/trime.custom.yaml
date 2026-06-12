@@ -1,0 +1,6 @@
+# Theme customization — make the language toggle key show 中 / En
+# (like Google Pinyin). The key sits left of the spacebar; one tap
+# switches Chinese ↔ English, long-press opens the menu.
+
+patch:
+  "preset_keys/Mode_switch/states": [ 中, En ]
