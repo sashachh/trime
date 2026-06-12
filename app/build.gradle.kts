@@ -25,7 +25,7 @@ android {
     buildToolsVersion = "35.0.0"
 
     defaultConfig {
-        applicationId = "com.osfans.trime"
+        applicationId = "io.github.sashachh.bestpinyin"
         minSdk = 21
         targetSdk = 35
         versionCode = 20260701
@@ -65,8 +65,6 @@ android {
             resValue("string", "trime_app_name", "@string/app_name_release")
         }
         debug {
-            applicationIdSuffix = ".debug"
-
             resValue("string", "trime_app_name", "@string/app_name_debug")
         }
         all {
